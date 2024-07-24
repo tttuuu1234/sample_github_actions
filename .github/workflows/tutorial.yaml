@@ -1,0 +1,17 @@
+name: Tutorial CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  flutter_pub_get_job:
+    runs-on: macos-14
+    name: flutter pub get
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-actions@v2
+        with:
+          flutter-version: 3.22.2
+          channel: 'stable'
+      - run: flutter pub get
