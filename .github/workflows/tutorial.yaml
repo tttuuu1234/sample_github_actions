@@ -5,18 +5,20 @@ on:
     branches: [ main ]
 
 jobs:
-  flutter_pub_get_job:
+  tutorial_job:
     runs-on: macos-14
-    name: flutter pub get
+    name: tutorialです
     steps:
-      - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+      - name: Clone repository 
+        uses: actions/checkout@v4
+      - name: Set up flutter
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: 3.22.2
           channel: 'stable'
-      - uses: actions/cache@v3
+      - name: Cache pub get
+        uses: actions/cache@v3
         with:
-          # path: ${{ env.FLUTTER_ROOT }}/.pub-cache
           path: ${{ env.PUB_CACHE }}
           key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: |
