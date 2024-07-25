@@ -17,7 +17,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ env.FLUTTER_HOME }}/.pub-cache
-          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspeck.lock') }}
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: |
             ${{ runner.os }}-pub-
       - run: flutter pub get
