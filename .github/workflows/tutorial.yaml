@@ -22,4 +22,4 @@ jobs:
             ${{ runner.os }}-pub-
       - run: flutter pub get
       - run: flutter analyze
-      - run: echo "完了" 
+      - run: echo "完了 編集後" 
