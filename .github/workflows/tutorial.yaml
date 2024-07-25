@@ -16,7 +16,8 @@ jobs:
           channel: 'stable'
       - uses: actions/cache@v3
         with:
-          path: ${{ env.FLUTTER_ROOT }}/.pub-cache
+          # path: ${{ env.FLUTTER_ROOT }}/.pub-cache
+          path: ${{ env.PUB_CACHE }}
           key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: |
             ${{ runner.os }}-pub-
