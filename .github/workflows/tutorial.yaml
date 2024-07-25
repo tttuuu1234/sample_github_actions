@@ -14,5 +14,11 @@ jobs:
         with:
           flutter-version: 3.22.2
           channel: 'stable'
+      - uses: actions/cache@v3
+        with:
+          path: ${{ env.FLUTTER_HOME }}/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspeck.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
       - run: flutter pub get
       - run: flutter analyze
