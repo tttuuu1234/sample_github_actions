@@ -16,6 +16,7 @@ jobs:
         with:
           flutter-version: 3.22.2
           channel: 'stable'
+          chche: true
       - name: Cache pub get
         uses: actions/cache@v3
         with:
