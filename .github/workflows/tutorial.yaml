@@ -20,8 +20,17 @@ jobs:
       - name: Cache pub get
         uses: actions/cache@v3
         with:
-          path: ${{ env.PUB_CACHE }}
+          # キャッシュにする対象。この場合は、インストールしたDartパッケージのキャッシュが保持されているPUB_CACHEディレクトリを対象にしている。
+          # ちなみにキャッシュはGithubActionsのクラウドストレージに保存される。
+          path: ${{ env.PUB_CACHE }} 
+          # キャッシュを一意に識別するための文字列。指定値で保存され、クラウドストレージに存在するかの検索もこの文字列で行う。
+          # 指定した文字列と完全一致しているものがあればそれを使用する。
+          # 完全一致がない場合、restore-keys で指定された部分一致を探す。
+          # 一致するものがない場合、新規でキャッシュを作成する。
           key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+          # keyで完全一致するものが存在しない場合に、部分的に一致するkeyのキャッシュを検索するのに使用する。
+          # 優先度の高い順にkeyを指定する。
+          # 上から順に実施される。
           restore-keys: |
             ${{ runner.os }}-pub-
       - run: flutter pub get
