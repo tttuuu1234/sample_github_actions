@@ -1,0 +1,21 @@
+name: PRへのコメントテスト
+
+on: 
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  pr_comment_job:
+    runs-on: ubunts-22.04
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: PRにコメントのテスト
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "PRへのコメント内容をファイルに出力する" > /tmp/comment
+          gh pr comment "${PR_NUMBER}" -F /tmp/comment
+
