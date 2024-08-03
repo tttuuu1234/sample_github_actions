@@ -6,7 +6,10 @@ on:
 
 jobs:
   tutorial_job:
-    runs-on: macos-14
+    # Macでしかできないこと（例： iOSアプリのビルドとか）以外には基本的にLinux系のOSの使用が良い。
+    # 理由は、MacOSの使用はLinux系OSの10倍超過料金がかかるため。
+    # 600分超過した場合、Lunux系は$4.8(約696円)、MacOSは$48(約6960円)。
+    runs-on: ubuntu-22.04
     name: tutorialです
     steps:
       - name: Clone repository 
